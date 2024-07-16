@@ -30,7 +30,7 @@ def remove_dub():
         file_path = os.path.join(sd, filename)
         with open(file_path, 'r') as file:
             lines = file.read().splitlines()
-        lines = sorted(set(lines))
+        lines = list(dict.fromkeys(lines))  # Remove duplicates while preserving order
         with open(file_path, 'w') as file:
             for line in lines:
                 file.write(line + '\n')
