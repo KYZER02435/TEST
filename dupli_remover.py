@@ -12,7 +12,7 @@ def clear():
     os.system('clear')
 
 logo = """
-Your Logo Here
+DUPLI REMOVER
 """
 
 def linex():
@@ -28,15 +28,23 @@ def remove_dub():
         filename = input(f" [{B}>>{W}] ENTER FILE NAME: ")
         sd = '/sdcard/'
         file_path = os.path.join(sd, filename)
+        
         with open(file_path, 'r') as file:
             lines = file.read().splitlines()
-        lines = list(dict.fromkeys(lines))  # Remove duplicates while preserving order
+        
+        total_count = len(lines)
+        unique_lines = list(dict.fromkeys(lines))  # Remove duplicates while preserving order
+        unique_count = len(unique_lines)
+        
         with open(file_path, 'w') as file:
-            for line in lines:
+            for line in unique_lines:
                 file.write(line + '\n')
+        
         linex()
-        print(f' [{B}√{W}] SUCCESSFULLY REMOVED')
-        input(f' [{B}√{W}] PRESS ENTER TO BACK ')
+        print(f' [{B}•{W}] SUCCESSFULLY REMOVED')
+        print(f' [{B}•{W}] Total Count of IDs with Duplicates: {total_count}')
+        print(f' [{B}•{W}] Total Saved IDs without Duplicates: {unique_count}')
+        input(f' [{B}•{W}] PRESS ENTER TO BACK ')
         back()
     except FileNotFoundError:
         linex()
